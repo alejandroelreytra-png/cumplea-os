@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>¡Feliz Cumpleaños mi Amor!</title>
+    <style>
+        :root {
+            --color-principal: #ff4d6d;
+            --color-secundario: #ff85a1;
+            --color-fondo: #fff0f3;
+        }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #ffe5ec 0%, #ffc2d1 100%);
+            color: #4a1525;
+            text-align: center;
+            min-height: 100vh;
+            padding: 20px;
+            overflow-x: hidden;
+        }
+        .contenedor {
+            max-width: 500px;
+            margin: 0 auto;
+        }
+        header {
+            margin-top: 30px;
+            animation: flotar 3s ease-in-out infinite;
+        }
+        h1 {
+            font-size: 2.2rem;
+            color: var(--color-principal);
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+        }
+        .subtitulo { font-size: 1.1rem; color: #7a2240; margin-top: 5px; font-weight: 300; }
+        
+        /* Globos flotantes en el fondo */
+        .globo {
+            position: fixed;
+            bottom: -100px;
+            font-size: 30px;
+            animation: subir 8s linear infinite;
+            z-index: 1;
+            opacity: 0.7;
+        }
+
+        /* Tarjeta principal */
+        .tarjeta-regalo {
+            background: white;
+            border-radius: 24px;
+            padding: 30px 20px;
+            margin: 40px auto;
+            box-shadow: 0 15px 35px rgba(255, 77, 109, 0.2);
+            position: relative;
+            z-index: 10;
+            border: 2px solid rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(10px);
+        }
+        
+        /* El regalo interactivo */
+        .caja-regalo {
+            font-size: 70px;
+            cursor: pointer;
+            transition: transform 0.3s;
+            animation: vibrar 1.5s infinite;
+        }
+        .caja-regalo:hover { transform: scale(1.1); }
+        
+        .instruccion { font-size: 0.9rem; color: var(--color-secundario); font-weight: bold; margin-bottom: 20px; }
+
+        /* Carta oculta */
+        .carta-contenido {
+            display: none;
+            opacity: 0;
+            transition: opacity 0.8s ease;
+            text-align: left;
+            background: #fff8f9;
+            padding: 20px;
+            border-radius: 15px;
+            border-left: 4px solid var(--color-principal);
+            margin-top: 20px;
+            line-height: 1.6;
+        }
+        .carta-contenido p { margin-bottom: 15px; font-size: 1.05rem; }
+
+        /* Galería de fotos (Simulada con estilos lindos) */
+        .galeria-recuerdos {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin-top: 30px;
+        }
+        .foto-marco {
+            background: white;
+            padding: 10px;
+            border-radius: 12px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            transform: rotate(-3deg);
+        }
+        .foto-marco:nth-child(even) { transform: rotate(3deg); }
+        .foto-marco div {
+            background: #e0e0e0;
+            height: 130px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #888;
+            font-size: 0.9rem;
+        }
+
+        /* Animaciones */
+        @keyframes flotar {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+        @keyframes subir {
+            0% { transform: translateY(0) translateX(0); opacity: 0; }
+            10% { opacity: 0.8; }
+            90% { opacity: 0.8; }
+            100% { transform: translateY(-110vh) translateX(50px); opacity: 0; }
+        }
+        @keyframes vibrar {
+            0%, 100% { transform: rotate(0); }
+            20% { transform: rotate(-8deg); }
+            40% { transform: rotate(6deg); }
+            60% { transform: rotate(-4deg); }
+            80% { transform: rotate(4deg); }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Globos decorativos automáticos -->
+    <div class="globo" style="left: 10%; animation-delay: 0s;">🎈</div>
+    <div class="globo" style="left: 30%; animation-delay: 2s;">🎂</div>
+    <div class="globo" style="left: 55%; animation-delay: 4s;">🎈</div>
+    <div class="globo" style="left: 80%; animation-delay: 1s;">❤️</div>
+
+    <div class="contenedor">
+        <header>
+            <h1 id="titulo-nombre">¡Feliz Cumpleaños! 🎉</h1>
+            <p class="subtitulo">Hoy es un día especial porque naciste tú</p>
+        </header>
+
+        <div class="tarjeta-regalo">
+            <p class="instruccion">Toca el regalo para abrir tu sorpresa 👇</p>
+            <div class="caja-regalo" id="regalo" onclick="abrirRegalo()">🎁</div>
+            
+            <div class="carta-contenido" id="carta">
+                <p><strong>Mi amor,</strong></p>
+                <p id="parrafo-carta">Aquí va a ir tu carta súper especial, larga y hermosa. Puedes contarle lo mucho que la amas, recordar el día que la conociste o desearle el mejor de los cumpleaños.</p>
+                <p style="text-align: right; font-weight: bold; color: var(--color-principal);">Con todo mi amor, ❤️</p>
+            </div>
+        </div>
+
+        <!-- Sección de fotos estilo Polaroid -->
+        <h2 style="color: #7a2240; font-size: 1.3rem; margin-top: 20px;">Nuestros Momentos ✨</h2>
+        <div class="galeria-recuerdos">
+            <div class="foto-marco">
+                <div>[ Foto Juntos 1 ]</div>
+            </div>
+            <div class="foto-marco">
+                <div>[ Tu Sonrisa ]</div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function abrirRegalo() {
+            var regalo = document.getElementById("regalo");
+            var carta = document.getElementById("carta");
+            
+            regalo.style.animation = "none";
+            regalo.innerHTML = "💝";
+            
+            carta.style.display = "block";
+            setTimeout(function() {
+                carta.style.opacity = "1";
+            }, 50);
+        }
+    </script>
+</body>
+</html>
